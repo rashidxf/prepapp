@@ -1,3 +1,4 @@
+const dbConfig = require('./config/database'); 
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
@@ -6,12 +7,8 @@ const app = express();
 app.use(cors());
 
 // Local MySQL Database configuration
-const db = mysql.createConnection({
-    host: '127.0.0.1',     // Local MySQL
-    user: 'root',
-    password: 'your_password',
-    database: 'appusers'
-});
+const db = mysql.createConnection(dbConfig.databaseURL);
+
 
 db.connect((err) => {
     if (err) {
